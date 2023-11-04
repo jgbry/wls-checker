@@ -11,12 +11,10 @@ Bot to retrieve the upcoming events in the 'Tournaments' and 'Play' categories o
 
 .env
 ```json
-{
 TOKEN = YOUR_TOKEN_HERE
 CHANNEL_ID_TOURNOIS = CHANNEL_ID_TOURNOIS # Channel to send message "Tournois"
 CHANNEL_ID_JOUER = CHANNEL_ID_JOUER # Channel to send message "JOUER"
 TIME = 86400000 # TIME BETWEEN SENDING EACH MESSAGE (Default : 24h = 86400000)
-}
 ```
 To obtain a token, visit https://discord.com/developers/applications/
 
