@@ -7,13 +7,13 @@ require('dotenv').config();
 
 function timeConverter(UNIX_timestamp) {
   var a = new Date(UNIX_timestamp * 1000);
-  var months = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   var year = a.getFullYear();
   var month = months[a.getMonth()];
   var date = a.getDate();
   var hour = a.getHours();
   var min = a.getMinutes();
-  var time = date + ' ' + month + ' ' + year + ' à ' + hour + 'h' + min;
+  var time =  month + ' ' + date + ' ' + year + ' à ' + hour + 'h' + min;
   return time;
 }
 
@@ -23,13 +23,13 @@ client.on('ready', () => {
       .then(response => {
         const rooms = response.data.slice(0, 10);
         const roomNames = rooms.map(room =>
-          "> Nom du tournois : " + room.event.name + "\n> Date de début : " + timeConverter(room.start_time) +
-          "\n> Date de fin : " + timeConverter(room.end_time) + "\n> Mode de jeu : " + room.game_mode +
-          "\n> [__**Lien**__](https://system-beta.warlegend.net/play/rooms/" + room.id + "/leaderboard)\n\n-------------------\n"
+          "> Tournament Name: " + room.event.name + "\n> Start Date: " + timeConverter(room.start_time) +
+          "\n> End Date: " + timeConverter(room.end_time) + "\n> Game Mode: " + room.game_mode +
+          "\n> [__**Link**__](https://system-beta.warlegend.net/play/rooms/" + room.id + "/leaderboard)\n\n-------------------\n"
         ).join('');
 
         const embed = {
-          title: 'Tournois Catégorie "JOUER" sur WarLegend',
+          title: 'Tournaments Category "PLAY" on WarLegend',
           description: roomNames,
           timestamp: new Date(),
         };
@@ -44,14 +44,14 @@ client.on('ready', () => {
       .then(response => {
         const rooms = response.data.current_events;
         const roomNames = rooms.map(room =>
-          "> Nom du tournois : " + room.name + "\n> Date de début : " + timeConverter(room.window.start_time) +
-          "\n> Date de fin : " + timeConverter(room.window.end_time) + "\n> Mode de jeu : " + room.game_mode +
-          "\n> Prix : " + room.prizepool_total.display + `\n> Ouvert : ${room.public ? 'Oui' : 'Non'}` +
-          "\n> [__**Lien**__](https://system-beta.warlegend.net/play/rooms/" + room.id + "/leaderboard)\n\n-------------------\n"
+          "> Tournament Name: " + room.name + "\n> Start Date: " + timeConverter(room.window.start_time) +
+          "\n> End Date: " + timeConverter(room.window.end_time) + "\n> Game Mode: " + room.game_mode +
+          "\n> Prize: " + room.prizepool_total.display + `\n> Open: ${room.public ? 'Yes' : 'No'}` +
+          "\n> [__**Link**__](https://system-beta.warlegend.net/play/rooms/" + room.id + "/leaderboard)\n\n-------------------\n"
         ).join('');
 
         const embed = {
-          title: 'Tournois Catégorie "TOURNOIS" sur WarLegend',
+          title: 'Tournaments Category "TOURNAMENTS" on WarLegend',
           description: roomNames,
           timestamp: new Date(),
         };
